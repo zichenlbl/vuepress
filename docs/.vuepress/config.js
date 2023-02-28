@@ -1,20 +1,23 @@
 module.exports = {
   base: '/vuepress/',
-  title: 'HuJinya | 中文文档',
+  title: '文档',
   description: 'HuJinya',
+  head: [
+    ['link', { rel: 'icon', href: '/assets/img/logo.png' }]
+  ],
   themeConfig: {
     logo: '/assets/img/logo.png',
     //标题导航栏
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/guide/', target: '_self', rel: '' },
-      { text: 'Languages', ariaLabel: 'Language Menu', 
+      { text: '首页', link: '/' },
+      { text: '目录', link: '/guide/', target: '_self', rel: '' },
+      { text: '空', ariaLabel: 'Language Menu', 
         items: [
           { text: 'Chinese', link: '/language/chinese/' },
           { text: 'Japanese', link: '/language/japanese/' }
         ]
       },
-      { text: 'Languages1',
+      { text: '空',
         items: [
           { text: 'Group1', items: [ 
                { text: 'Chinese', link: '/language/chinese/' }, { text: 'Japanese', link: '/language/japanese/' } 
@@ -26,8 +29,8 @@ module.exports = {
           }
         ]
       },
-      { text: 'External', link: 'https://google.com', target: '_self', rel: 'noopener noreferrer' },
-      { text: 'External1', link: 'https://google.com'},
+      { text: '空', link: 'https://google.com'},
+      { text: '关于我', link: 'https://hujinya.com/about', target: '_self', rel: 'noopener noreferrer' },
     ],
     navbar: true,
     // sidebar: [
@@ -36,6 +39,8 @@ module.exports = {
     // ],
     //侧边栏
     sidebar: 'auto',
+    //侧边栏深度 2:h2-h3 3:h2-h4
+    sidebarDepth: 3,
     //显示所有页面的标题链接
     displayAllHeaders: true,
     // 最后更新时间
@@ -54,7 +59,7 @@ module.exports = {
     // 假如文档不是放在仓库的根目录下：
     //docsDir: 'docs',
     // 假如文档放在一个特定的分支下：
-    docsBranch: 'gh-pages',
+    docsBranch: 'master',
     // 默认是 false, 设置为 true 来启用
     editLinks: true,
     // 默认为 "Edit this page"

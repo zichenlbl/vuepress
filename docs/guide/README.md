@@ -1,15 +1,17 @@
-# guide
+# 目录
 
-## 1
+## c#
 
-q
+### base64
 
-## 2
+[图片转base64](/csharp/图片转base64.md), 
 
-qq
 
-### 3
 
-qqq
 
-<img :src="$withBase('/hero1.png')" alt="hero1">
+
+<!--
+
+<img :src="$withBase('/he.png')" alt="图片">
+
+-->
