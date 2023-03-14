@@ -29,7 +29,7 @@ module.exports = {
           }
         ]
       },
-      { text: '空', link: 'https://google.com'},
+      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/'},
       { text: '关于我', link: 'https://hujinya.com/about', target: '_self', rel: 'noopener noreferrer' },
     ],
     navbar: true,
