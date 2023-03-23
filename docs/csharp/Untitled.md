@@ -1037,6 +1037,353 @@ private void btn_save_Click(object sender, EventArgs e)
 
 ```
 
+报告界面双击模板后加载模板
+
+```csharp
+//Report report = new Report();
+//report.f_TemplateWriteBack();
+//}
+//else
+//{
+//    //写过报告,审核医师是当前登录者
+//    //根据输入域id回写shys的签名图片
+//    string mSql = "select t.user_id, t.cuser_dzqm from icnris_userinfo t where user_id=:user_id";
+//    uDataSet mDataSet = new uDataSet(new string[] { mSql }, new uParameter[] { new uParameter(":user_id", "081") });
+//    //mDataSet = new uDataSet(new string[] { mSql }, new uParameter[] { new uParameter(":user_id", S_Args1[2]) });
+//    if (mDataSet.RowCount() == 0)
+//    {
+//        return;
+//    }
+//    LogManager.WriteLog("user_id:" + S_Args1[2]);
+//    foreach (DataTable item in mDataSet.Tables)
+//    {
+//        foreach (DataRow dr1 in item.Rows) ///遍历所有的行
+//        {
+//            foreach (DataColumn dc in item.Columns) //遍历所有的列
+//            {
+//                //LogManager.WriteLog(item.TableName + ", " + dc.ColumnName + ", " + dr1[dc] + ", "); //表名,列名,单元格数据
+//            }
+//            LogManager.WriteLog("电子签名图片:" + dr1[1]);
+//            //调用js 根据输入域id设置图片
+//            if (!string.IsNullOrEmpty(dr1[1] as String))
+//            {
+//                string Base64Str = "data:image/png;base64," + dr1[1];
+//                //调用回写数据的js方法
+//                StringBuilder mPatientInformationStr = new StringBuilder(); //拼接病人信息回写数据的json
+//                mPatientInformationStr.Append("{");
+//                mPatientInformationStr.Append("\"shys\":\"" + S_Args1[3] + "\""); //审核医师的姓名
+//                mPatientInformationStr.Append("}");
+//                uc_Sring.chromeBrowser.ExecuteScriptAsync("f_set_data('" + mPatientInformationStr + "');");
+//                uc_Sring.chromeBrowser.ExecuteScriptAsync("inteImg('" + "shysqm" + "','" + Base64Str + "');");
+//            }
+//        }
+//    }
+//}
+
+#region 注释
+    //    Thread.Sleep(1000);
+    ////回写信息
+    //if (mGetDataTemplate == null)
+    //{
+    //    return;
+    //}
+    //string mSql = mGetDataTemplate.sql;
+    //if (string.IsNullOrEmpty(mSql))
+    //{
+    //    return;
+    //}
+    //LogManager.WriteLog("传递的sql:" + mSql);
+    ////根据模板iid查询回写病人信息的SQL
+    //if (S_Args == null)
+    //{
+    //    return;
+    //}
+    //string mParameter = Encoding.Default.GetString(Convert.FromBase64String(S_Args[1]));
+    ////解析参数
+    //SaveEventParameter mSaveEventReportParameter = new JavaScriptSerializer()
+    //     .Deserialize<SaveEventParameter>(mParameter);
+    //ExamReportParameter mReport = mSaveEventReportParameter.parameter;
+    ////JObject mJobject = JObject.Parse(mParameter);
+    //long mExamIid = mReport.exam_iid; //检查表iid
+    //LogManager.WriteLog("mExamIid" + mExamIid);
+    ////string mSql = @"select t.* from icnris_exam t where iid=:iid";
+    ////mSql = "select t.cname as \"name\", t.CSEX as \"sex\", t.CAGE as \"age\" from icnris_exam t where iid=:iid";
+    ////mExamIid = 147073;
+    //uDataSet mDataSet = new uDataSet(new string[] { mSql }, new uParameter[] { new uParameter(":iid", mExamIid) }); //147073
+    //if (mDataSet.RowCount() == 0)
+    //{
+    //    return;
+    //}
+    //foreach (DataTable dt in mDataSet.Tables)
+    //{
+    //    foreach (DataRow dr in dt.Rows) ///遍历所有的行
+    //    {
+    //        StringBuilder mPatientInformationStr = new StringBuilder(); //拼接病人信息回写数据的json
+    //        mPatientInformationStr.Append("{");
+    //        foreach (DataColumn dc in dt.Columns) //遍历所有的列
+    //        {
+    //            mPatientInformationStr.Append("\"" + dc.ColumnName + "\":\"" + dr[dc] + "\",");
+    //            LogManager.WriteLog(dt.TableName + ", " + dc.ColumnName + ", " + dr[dc] + ", "); //表名,列名,单元格数据
+    //        }
+    //        mPatientInformationStr.Append("\"bgys\":\"" + S_Args1[3] + "\","); //报告医师的姓名
+    //        if (mPatientInformationStr.Length > 1)
+    //        {
+    //            mPatientInformationStr.Remove(mPatientInformationStr.Length - 1, 1); //去除最后一个逗号,
+    //        }
+    //        mPatientInformationStr.Append("}");
+    //        LogManager.WriteLog("json数据:" + mPatientInformationStr.ToString());
+    //        //调用回写数据的js方法
+    //        uc_Sring.chromeBrowser.ExecuteScriptAsync("f_set_data('" + mPatientInformationStr + "');");
+
+    //        //回写医生姓名和签名 提交报告医生是当前登陆者 bgys shys
+    //        //根据输入域id回写bgys的签名图片
+    //        mSql = "select t.user_id, t.cuser_dzqm from icnris_userinfo t where user_id=:user_id";
+    //        mDataSet = new uDataSet(new string[] { mSql }, new uParameter[] { new uParameter(":user_id", "081") });
+    //        //mDataSet = new uDataSet(new string[] { mSql }, new uParameter[] { new uParameter(":user_id", S_Args1[2]) });
+    //        if (mDataSet.RowCount() == 0)
+    //        {
+    //            return;
+    //        }
+    //        LogManager.WriteLog("user_id:" + S_Args1[2]);
+    //        foreach (DataTable item in mDataSet.Tables)
+    //        {
+    //            foreach (DataRow dr1 in item.Rows) ///遍历所有的行
+    //            {
+    //                if (!string.IsNullOrEmpty(dr1[1] as String))
+    //                {
+    //                    //LogManager.WriteLog("电子签名图片:" + dr1[1]);
+    //                }
+    //            }
+    //        }
+    //        //调用js 根据输入域id设置图片
+
+    //    }
+    //}
+    #endregion 注释
+```
+
+gbgl_main
+
+监听其他程序发送的消息
+
+```csharp
+
+
+/// <summary>
+/// 处理其他窗口调阅过来的信息
+/// </summary>
+/// <param name="pArg"></param>
+//public override void f_ProcessParams(object pArg)
+//{
+//    MessageBox.Show("处理其他窗口发送的消息");
+//    var mArg = pArg as Hashtable;
+//    if (mArg != null)
+//    {
+//        if (mArg["type"].ToString() == "icn_sr")
+//        {
+//            MessageBox.Show("接收到所见:" + mArg["OpinionStr"] + "结论:" + mArg["ConclusionStr"]);
+//            txt_nr.Text = mArg["OpinionStr"].ToString();
+//            txt_jg.Text = mArg["ConclusionStr"].ToString();
+//        }
+//        else
+//        {
+//            //
+
+//            mUserPicControl.f_Setjc(
+//                ((Hashtable)pArg)["accno"].ToString(),
+//                ((Hashtable)pArg)["name"].ToString(),
+//                ((Hashtable)pArg)["sex"].ToString(),
+//                ((Hashtable)pArg)["age"].ToString(),
+//                ((Hashtable)pArg)["accno"].ToString(),
+//                (uDataSet)((Hashtable)pArg)["ds"]
+//                );
+//            dockPanel_cj.Show();
+//            dockPanel_cj.Text = "采集:  " + ((Hashtable)pArg)["name"].ToString();
+//        }
+//    }
+
+//}
+```
+
+icn_sr打开报告加载窗体
+
+```csharp
+//ReportMain.f_TemplateLoading();
+
+//网页加载完成事件
+//uc_sring1.chromeBrowser.FrameLoadEnd += f_ChromeBrowser_FrameLoadEnd;
+
+//打开报告做的一些事情
+//f_OpenReport();
+```
+
+icn_sr 报告界面
+
+```csharp
+
+/// <summary>
+/// 鼠标在模板列表组件上方并按下
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void gc_template_MouseDown(object sender, MouseEventArgs e)
+{
+    #region 注释
+        //PostgreSQLContext context = new PostgreSQLContext(new PostgreSQLConnectionFactory(DBConnectionString.POSTGRE_SQL));
+        //try
+        //{
+        //    DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hInfo = gridView1.CalcHitInfo(new Point(e.X, e.Y));
+        //    if (e.Button == MouseButtons.Left && e.Clicks == 2)
+        //    {
+        //        if (hInfo.InRow)
+        //        {
+        //            // 获取选中行的参数
+        //            int mSelectRow = gridView1.GetSelectedRows()[0];
+        //            //模板iid
+        //            string mIid = this.gridView1.GetRowCellValue(mSelectRow, "iid").ToString();
+        //            long mTemplatIid = Convert.ToInt64(mIid);
+        //            S_TemplateIid = mTemplatIid;
+        //            var m_q_datatemplat = context.Query<sr_data_templat>();
+        //            var mGetDataTemplate = m_q_datatemplat.Where(a => a.iid == mTemplatIid)
+        //                .Select(a => new
+        //                {
+        //                    a.template_data,
+        //                    a.sql
+        //                }).FirstOrDefault();
+        //            //加载模板
+        //            if (!string.IsNullOrEmpty(mGetDataTemplate.template_data))
+        //            {
+        //                ///TODO
+        //                //uc_sring1.chromeBrowser.ExecuteScriptAsync("f_load_template('" + mGetDataTemplate.template_data + "');");
+        //                ///
+        //                if (uc_Sring != null)
+        //                {
+        //                    uc_Sring.chromeBrowser.ExecuteScriptAsync("f_load_template('" + mGetDataTemplate.template_data + "');");
+        //                }
+        //            }
+
+        //            Thread.Sleep(300);
+        //            //回写信息
+        //            if (mGetDataTemplate == null)
+        //            {
+        //                return;
+        //            }
+        //            string mSql = mGetDataTemplate.sql;
+        //            if (string.IsNullOrEmpty(mSql))
+        //            {
+        //                return;
+        //            }
+        //            LogManager.WriteLog("传递的sql:" + mSql);
+        //            //根据模板iid查询回写病人信息的SQL
+        //            if (S_Args == null)
+        //            {
+        //                return;
+        //            }
+        //            string mParameter = Encoding.Default.GetString(Convert.FromBase64String(S_Args[1]));
+        //            //解析参数
+        //            SaveEventParameter mSaveEventReportParameter = new JavaScriptSerializer()
+        //                 .Deserialize<SaveEventParameter>(mParameter);
+        //            ExamReportParameter mReport = mSaveEventReportParameter.parameter;
+        //            //JObject mJobject = JObject.Parse(mParameter);
+        //            long mExamIid = mReport.exam_iid; //检查表iid
+        //            LogManager.WriteLog("mExamIid" + mExamIid);
+        //            //string mSql = @"select t.* from icnris_exam t where iid=:iid";
+        //            //mSql = "select t.cname as \"name\", t.CSEX as \"sex\", t.CAGE as \"age\" from icnris_exam t where iid=:iid";
+        //            //mExamIid = 147073;
+        //            uDataSet mDataSet = new uDataSet(new string[] { mSql }, new uParameter[] { new uParameter(":iid", mExamIid) }); //147073
+        //            if (mDataSet.RowCount() == 0)
+        //            {
+        //                return;
+        //            }
+        //            foreach (DataTable dt in mDataSet.Tables)
+        //            {
+        //                foreach (DataRow dr in dt.Rows) ///遍历所有的行
+        //                {
+        //                    StringBuilder mPatientInformationStr = new StringBuilder(); //拼接病人信息回写数据的json
+        //                    mPatientInformationStr.Append("{");
+        //                    foreach (DataColumn dc in dt.Columns) //遍历所有的列
+        //                    {
+        //                        mPatientInformationStr.Append("\"" + dc.ColumnName + "\":\"" + dr[dc] + "\",");
+        //                        LogManager.WriteLog(dt.TableName + ", " + dc.ColumnName + ", " + dr[dc] + ", "); //表名,列名,单元格数据
+        //                    }
+        //                    if (mPatientInformationStr.Length > 1)
+        //                    {
+        //                        mPatientInformationStr.Remove(mPatientInformationStr.Length - 1, 1); //去除最后一个逗号,
+        //                    }
+        //                    mPatientInformationStr.Append("}");
+        //                    LogManager.WriteLog("json数据:" + mPatientInformationStr.ToString());
+        //                    //调用回写数据的js方法
+        //                    uc_Sring.chromeBrowser.ExecuteScriptAsync("f_set_data('" + mPatientInformationStr + "');");
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    LogManager.WriteLog("双击模板出错:" + ex.Message);
+        //}
+        //finally
+        //{
+        //    context.Dispose();
+        //}
+        #endregion
+}
+
+```
+
+```csharp
+
+private void tree_templat_MouseDown(object sender, MouseEventArgs e)
+{
+    #region 注释
+        //try
+        //{
+        //    DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hInfo = gridView1.CalcHitInfo(new Point(e.X, e.Y));
+        //    if (e.Button == MouseButtons.Left && e.Clicks == 2)
+        //    {
+        //        if (hInfo.InRow)
+        //        {
+        //            // 获取选中行的参数
+        //            DevExpress.XtraTreeList.Nodes.TreeListNode mListNode = tree_templat.FocusedNode;
+        //            //没有子节点
+        //            if (!mListNode.HasChildren)
+        //            {
+        //                string mIid = mListNode["iid"].ToString();
+
+        //            }
+        //        }
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    LogManager.WriteLog("双击模板出错:" + ex.Message);
+        //}
+        //finally
+        //{
+
+        //}
+        #endregion 注释
+}
+
+```
+
+```csharp
+
+/// <summary>
+/// 打开控制台
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void simpleButton1_Click(object sender, EventArgs e)
+{
+    uc_sring1.chromeBrowser.ShowDevTools();
+}
+
+```
+
+
+
 
 
 

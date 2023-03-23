@@ -11,25 +11,37 @@ module.exports = {
     nav: [
       { text: '首页', link: '/' },
       { text: '目录', link: '/guide/', target: '_self', rel: '' },
-      { text: '空', ariaLabel: 'Language Menu', 
+      { text: '分类',
         items: [
-          { text: 'Chinese', link: '/language/chinese/' },
-          { text: 'Japanese', link: '/language/japanese/' }
-        ]
-      },
-      { text: '空',
-        items: [
-          { text: 'Group1', items: [ 
+          { text: 'C#', items: [ 
                { text: 'Chinese', link: '/language/chinese/' }, { text: 'Japanese', link: '/language/japanese/' } 
             ] 
           },
-          { text: 'Group2', items: [
+          { text: '计算机', items: [
                { text: 'Chinese', link: '/language/chinese/' }, { text: 'Japanese', link: '/language/japanese/' } 
             ] 
           }
         ]
       },
-      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/'},
+      { text: '爱好', ariaLabel: 'Language Menu', 
+        items: [
+          { text: '看书', link: '/language/chinese/' },
+          { text: '听歌', link: '/music/听歌/' },
+          { text: '骑车', link: '/language/chinese/' },
+          { text: '羽毛球', link: '/language/chinese/' },
+          { text: '跑步', link: '/language/chinese/' },
+          { text: '钢琴', link: '/piano/钢琴/' },
+          { text: '写字', link: '/language/chinese/' },
+          { text: '看风景', link: '/language/chinese/' },
+          { text: '看书', link: '/language/chinese/' },
+          { text: '看书', link: '/language/chinese/' },
+          { text: '看书', link: '/language/chinese/' },
+          { text: '看书', link: '/language/chinese/' },
+          { text: '看书', link: '/language/chinese/' },
+          { text: '看书', link: '/language/japanese/' }
+        ]
+      },
+      //{ text: 'csdn', link: 'https://vuepress.vuejs.org/zh/'},
       { text: '关于我', link: 'https://hujinya.com/about', target: '_self', rel: 'noopener noreferrer' },
     ],
     navbar: true,
@@ -51,7 +63,7 @@ module.exports = {
     repo: 'zichenlbl/vuepress',
     // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
     // "GitHub"/"GitLab"/"Bitbucket" 其中之一，或是 "Source"。
-    repoLabel: '查看源码',
+    //repoLabel: '查看源码',
 
     // 以下为可选的编辑链接选项
     // 假如你的文档仓库和项目本身不在一个仓库：
@@ -63,7 +75,7 @@ module.exports = {
     // 默认是 false, 设置为 true 来启用
     editLinks: true,
     // 默认为 "Edit this page"
-    editLinkText: '帮助我们改善此页面！',
+    //editLinkText: '帮助我们改善此页面！',
 
     //页面滚动
     smoothScroll: true,
