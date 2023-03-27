@@ -34,6 +34,8 @@
 
 [XtraMessageBox弹框提示](/cnris/XtraMessageBox弹框提示.md), 
 
+[WaitDialogForm正在加载](/cnris/WaitDialogForm正在加载.md), 
+
 
 
 
