@@ -14,7 +14,7 @@ module.exports = {
       { text: '分类',
         items: [
           { text: 'C#', items: [ 
-               { text: 'Chinese', link: '/language/chinese/' }, { text: 'Japanese', link: '/language/japanese/' } 
+               { text: '基础', link: '/csharp/基础/' }, { text: 'Japanese', link: '/language/japanese/' } 
             ] 
           },
           { text: '计算机', items: [
