@@ -1382,6 +1382,98 @@ private void simpleButton1_Click(object sender, EventArgs e)
 
 ```
 
+报告界面按按键
+
+```csharp
+//var mkey = e.KeyCode;
+//if (Keys.ControlKey == mkey && Keys.V == mkey)
+//{
+//    MessageBox.Show("Ctrl V");
+//}
+//ConsoleKeyInfo ki = Console.ReadKey(true);
+//if ((ki.Key == ConsoleKey.V) && (ki.Modifiers == ConsoleModifiers.Control))
+//{
+//Console.WriteLine("Ctrl+V pressed");
+//IDataObject iData = Clipboard.GetDataObject();
+//if (iData.GetDataPresent(DataFormats.Bitmap))
+//{
+//    Image image = (Bitmap)iData.GetData(DataFormats.Bitmap);
+//    using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream())
+//    {
+//        image.Save(memoryStream, image.RawFormat);
+//        byte[] imageBytes = memoryStream.ToArray();
+//        string base64Str = Convert.ToBase64String(imageBytes);
+//        base64Str = "data:image/png;base64," + base64Str;
+//        uc_sring1.chromeBrowser.ExecuteScriptAsync("imgClick('" + base64Str + "')");
+//    }
+//}
+//}
+//
+//Console.Write("Press any key to continue . . . ");
+```
+
+其他方式保存pdf二进制文件
+
+```csharp
+
+#region 注释 其他方式保存文件
+    //BASE64Decoder decoder = new BASE64Decoder();
+    //BufferedInputStream bis = null;
+    //FileOutputStream fos = null;
+    //BufferedOutputStream bos = null;
+
+    //try
+    //{
+    //    byte[] bytes = decoder.decodeBuffer(base64Content);//base64编码内容转换为字节数组
+    //    ByteArrayInputStream byteInputStream = new ByteArrayInputStream(bytes);
+    //    bis = new BufferedInputStream(byteInputStream);
+    //    File file = new File(filePath);
+    //    File path = file.getParentFile();
+    //    if (!path.exists())
+    //    {
+    //        path.mkdirs();
+    //    }
+    //    fos = new FileOutputStream(file);
+    //    bos = new BufferedOutputStream(fos);
+
+    //    byte[] buffer = new byte[1024];
+    //    int length = bis.read(buffer);
+    //    while (length != -1)
+    //    {
+    //        bos.write(buffer, 0, length);
+    //        length = bis.read(buffer);
+    //    }
+    //    bos.flush();
+    //}
+    //catch (Exception e)
+    //{
+    //    e.printStackTrace();
+    //}
+    //finally
+    //{
+    //    closeStream(bis, fos, bos);
+    //}
+    #endregion
+```
+
+保存二进制方法文件
+
+```csharp
+//byte[] sPDFDecoded = Convert.FromBase64String(mPdfBase64Str);
+//BinaryWriter writer = new BinaryWriter(File.Open(@"c:\Users\Administrator\Documents\pdf9.pdf", FileMode.CreateNew));
+//writer.Write(sPDFDecoded);
+```
+
+pdf base64字符串在新网页打开时的前缀
+
+```csharp
+//mPdfBase64Str = "data:application/pdf;base64,";
+```
+
+
+
+
+
 
 
 
