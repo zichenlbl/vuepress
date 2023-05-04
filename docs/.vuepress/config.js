@@ -14,31 +14,31 @@ module.exports = {
       { text: '分类',
         items: [
           { text: 'C#', items: [ 
-               { text: '基础', link: '/csharp/基础/' }, { text: 'Japanese', link: '/language/japanese/' } 
+               { text: '基础', link: '/csharp/基础/' }, { text: '空', link: '/language/japanese/' } 
             ] 
           },
           { text: '计算机', items: [
-               { text: 'Chinese', link: '/language/chinese/' }, { text: 'Japanese', link: '/language/japanese/' } 
+               { text: '空', link: '/language/chinese/' }, { text: '空', link: '/language/japanese/' } 
             ] 
           }
         ]
       },
       { text: '爱好', ariaLabel: 'Language Menu', 
         items: [
-          { text: '看书', link: '/language/chinese/' },
+          { text: '看书', link: '/read/看书/' },
           { text: '听歌', link: '/music/听歌/' },
-          { text: '骑车', link: '/language/chinese/' },
-          { text: '羽毛球', link: '/language/chinese/' },
-          { text: '跑步', link: '/language/chinese/' },
+          { text: '骑车', link: '/bicycle/骑车/' },
+          { text: '跑步', link: '/run/跑步/' },
           { text: '钢琴', link: '/piano/钢琴/' },
-          { text: '写字', link: '/language/chinese/' },
-          { text: '看风景', link: '/language/chinese/' },
-          { text: '看书', link: '/language/chinese/' },
-          { text: '看书', link: '/language/chinese/' },
-          { text: '看书', link: '/language/chinese/' },
-          { text: '看书', link: '/language/chinese/' },
-          { text: '看书', link: '/language/chinese/' },
-          { text: '看书', link: '/language/japanese/' }
+          { text: '写字', link: '/calligraphy/写字/' },
+          { text: '羽毛球', link: '/badminton/羽毛球/' },
+          { text: '看风景', link: '/scenery/看风景/' },
+          // { text: '看书', link: '/language/chinese/' },
+          // { text: '看书', link: '/language/chinese/' },
+          // { text: '看书', link: '/language/chinese/' },
+          // { text: '看书', link: '/language/chinese/' },
+          // { text: '看书', link: '/language/chinese/' },
+          // { text: '看书', link: '/language/japanese/' }
         ]
       },
       //{ text: 'csdn', link: 'https://vuepress.vuejs.org/zh/'},
