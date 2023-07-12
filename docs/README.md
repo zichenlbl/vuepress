@@ -12,7 +12,11 @@ features:
   details: git工具使用常用代码。
 - title: other
   details: 其他常用的代码。
-footer: Apache Licensed | Copyright © 2023-present Zichen
+
 ---
 
 # 笔记文档
+
+::: slot footer
+Apache Licensed | Copyright © 2023-present <a target="_blank" href="http://hujinya.com">Zichen</a> [Zichen](http://hujinya.com)
+:::
