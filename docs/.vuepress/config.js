@@ -42,7 +42,7 @@ module.exports = {
         ]
       },
       //{ text: 'csdn', link: 'https://vuepress.vuejs.org/zh/'},
-      { text: '关于我', link: 'https://hujinya.com/about', target: '_self', rel: 'noopener noreferrer' },
+      { text: '关于我', link: 'http://hujinya.top/about', target: '_self', rel: 'noopener noreferrer' },
     ],
     navbar: true,
     // sidebar: [
