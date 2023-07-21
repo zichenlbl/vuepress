@@ -14,7 +14,7 @@ module.exports = {
       { text: '分类',
         items: [
           { text: 'C#', items: [ 
-               { text: '基础', link: '/csharp/基础/' }, { text: '空', link: '/language/japanese/' } 
+               { text: '基础', link: '/' }, { text: 'csharp', link: '/csharp/' } 
             ] 
           },
           { text: '计算机', items: [
@@ -42,7 +42,7 @@ module.exports = {
         ]
       },
       //{ text: 'csdn', link: 'https://vuepress.vuejs.org/zh/'},
-      { text: '关于我', link: 'http://hujinya.top/about', target: '_self', rel: 'noopener noreferrer' },
+      { text: '关于我', link: 'http://zichenlbl.github.io/about', target: '_self', rel: 'noopener noreferrer' },
     ],
     navbar: true,
     // sidebar: [
