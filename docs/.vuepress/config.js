@@ -11,18 +11,18 @@ module.exports = {
     nav: [
       { text: '首页', link: '/' },
       { text: '目录', link: '/guide/', target: '_self', rel: '' },
-      { text: '分类',
-        items: [
-          { text: 'C#', items: [ 
-               { text: '基础', link: '/' }, { text: 'csharp', link: '/csharp/' } 
-            ] 
-          },
-          { text: '计算机', items: [
-               { text: '空', link: '/language/chinese/' }, { text: '空', link: '/language/japanese/' } 
-            ] 
-          }
-        ]
-      },
+      // { text: '分类',
+      //   items: [
+      //     { text: 'C#', items: [ 
+      //          { text: '基础', link: '/' }, { text: 'csharp', link: '/csharp/' } 
+      //       ] 
+      //     },
+      //     { text: '计算机', items: [
+      //          { text: '空', link: '/language/chinese/' }, { text: '空', link: '/language/japanese/' } 
+      //       ] 
+      //     }
+      //   ]
+      // },
       { text: '爱好', ariaLabel: 'Language Menu', 
         items: [
           { text: '看书', link: '/read/看书/' },
