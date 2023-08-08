@@ -2,21 +2,23 @@
 home: true
 heroImage: /hero.png
 heroText: 文档
-tagline: 笔记搜索文档
-actionText: 文档目录 →
+tagline: 点击顶部搜索框，搜索需要的文档和笔记。
+actionText: 目录→
 actionLink: /guide/
 features:
 - title: c#
   details: c#常用代码。
-- title: git
-  details: git工具使用常用代码。
-- title: other
-  details: 其他常用的代码。
+- title: 软件安装
+  details: php、apache、mysql、navicat、typora、oracle等软件的安装教程。
+- title: 电脑操作(Windows)
+  details: 重装系统、虚拟机安装Linux系统、远程桌面、局域网ftp服务器等教程。
 
 ---
 
-# 笔记文档
+# 文档
+
+联系我：zicl@qq.com
 
 ::: slot footer
-Apache Licensed | Copyright © 2023-present <a target="_blank" href="http://hujinya.com">Zichen</a> [Zichen](http://hujinya.com)
+[Apache Licensed](http://www.apache.org/licenses/LICENSE-2.0) | Copyright © 2023-present <a target="_blank" href="http://zichenlbl.github.io/about">Zichen</a>
 :::
