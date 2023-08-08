@@ -1,4 +1,4 @@
-vuepress官网：https://www.vuepress.cn/
+vuepress官网：https://www.vuepress.cn/ https://vuepress.vuejs.org/
 
 ## 本地运行
 
