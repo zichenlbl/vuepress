@@ -84,5 +84,21 @@ module.exports = {
   //显示行号
   markdown: {
     lineNumbers: true
+  },
+
+  
+  plugins: {
+    //回到顶部back-to-top
+    '@vuepress/back-to-top': {},
+
+    //中等变焦plugin-medium-zoom
+    '@vuepress/medium-zoom': {
+      selector: 'img.zoom-custom-imgs',
+      // medium-zoom options here
+      // See: https://github.com/francoischalifour/medium-zoom#options
+      options: {
+        margin: 16
+      }
+    }
   }
 }
