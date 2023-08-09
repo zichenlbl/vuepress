@@ -23,7 +23,7 @@ module.exports = {
       //     }
       //   ]
       // },
-      { text: '爱好', ariaLabel: 'Language Menu', 
+      { text: '其他', ariaLabel: 'Language Menu', 
         items: [
           { text: '看书', link: '/read/看书/' },
           { text: '听歌', link: '/music/听歌/' },

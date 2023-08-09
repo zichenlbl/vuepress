@@ -20,5 +20,5 @@ features:
 联系我：zicl@qq.com
 
 ::: slot footer
-[Apache Licensed](http://www.apache.org/licenses/LICENSE-2.0) | Copyright © 2023-present <a target="_blank" href="http://zichenlbl.github.io/about">Zichen</a>
+[Apache Licensed](http://www.apache.org/licenses/LICENSE-2.0) | Copyright © 2023-present <a target="_blank" href="http://zichenlbl.github.io/about">Zichen</a> | [VuePress](https://vuepress.vuejs.org/zh/)
 :::

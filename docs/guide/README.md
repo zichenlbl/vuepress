@@ -28,7 +28,9 @@
 
 [日志信息获取代码第几行](/csharp/日志信息获取代码第几行.md), 
 
-## cnris
+---
+
+**cnris**
 
 [读取配置文件ini](/cnris/读取配置文件ini.md), 
 
@@ -36,7 +38,15 @@
 
 [WaitDialogForm正在加载](/cnris/WaitDialogForm正在加载.md), 
 
+## 软件安装
 
+[php](/php/README.md)
+
+[apache](/apache/README.md)
+
+## 电脑操作
+
+[网页微信传输助手](/other/README.md#微信文件传输助手)
 
 <!--
 

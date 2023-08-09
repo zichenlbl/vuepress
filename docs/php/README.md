@@ -2,20 +2,9 @@
 
 ## php
 
-### hello world
+[安装 php](/php/安装.md)
 
-```php+HTML
-<!DOCTYPE html> 
-<html> 
-<body> 
-
-<?php 
-echo "Hello World!"; 
-?> 
-
-</body> 
-</html>
-```
+[hello world](/php/1.md)
 
 
 
