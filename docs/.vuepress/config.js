@@ -79,6 +79,24 @@ module.exports = {
 
     //页面滚动
     smoothScroll: true,
+
+    // 未实现algolia全文搜索
+    // algolia: {
+    //   apiKey: '01e4b84ec523ce29982afc477f10ac70',
+    //   indexName: 'E2DUDI112Q',
+    //   // 如果 Algolia 没有为你提供 `appId` ，使用 `BH4D9OD16A` 或者移除该配置项
+    //   appId: 'E2DUDI112Q'
+    // },
+
+    // 上一篇，下一篇
+    themeConfig: {
+      // 默认值是 true 。设置为 false 来禁用所有页面的 下一篇 链接
+      nextLinks: false,
+      // 默认值是 true 。设置为 false 来禁用所有页面的 上一篇 链接
+      prevLinks: false
+    },
+    
+
   },
   
   //显示行号
@@ -100,10 +118,15 @@ module.exports = {
       options: {
         margin: 15, // 缩放图像外部的空间
         background: '#302930', // 叠加层的背景
-        // scrollOffset: 0, // 关闭缩放时滚动的像素数
-        // container: '#zoom-container', // 用于渲染缩放的视口
-        // template: '#zoom-template', // 要在缩放上显示的模板元素
+        scrollOffset: 0, // 关闭缩放时滚动的像素数
+        container: '#zoom-container', // 用于渲染缩放的视口
+        template: '#zoom-template', // 要在缩放上显示的模板元素
       }
+    },
+
+    //搜索search
+    '@vuepress/search': {
+      searchMaxSuggestions: 10
     },
 
   }
