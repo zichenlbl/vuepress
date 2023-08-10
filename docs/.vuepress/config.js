@@ -93,12 +93,19 @@ module.exports = {
 
     //中等变焦plugin-medium-zoom
     '@vuepress/medium-zoom': {
-      selector: 'img.zoom-custom-imgs',
+      //selector: 'img.zoom-custom-imgs',
+      selector: 'main :not(a) > img',
       // medium-zoom options here
       // See: https://github.com/francoischalifour/medium-zoom#options
       options: {
-        margin: 16
+        margin: 15, // 缩放图像外部的空间
+        background: '#302930', // 叠加层的背景
+        // scrollOffset: 0, // 关闭缩放时滚动的像素数
+        // container: '#zoom-container', // 用于渲染缩放的视口
+        // template: '#zoom-template', // 要在缩放上显示的模板元素
       }
-    }
+    },
+
   }
+  
 }
