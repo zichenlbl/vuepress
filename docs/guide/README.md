@@ -44,6 +44,8 @@
 
 [apache](/apache/README.md)
 
+[mysql](/mysql/README.md)
+
 ## 电脑操作
 
 [网页微信传输助手](/other/README.md#微信文件传输助手)
