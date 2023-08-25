@@ -25,22 +25,27 @@ module.exports = {
       // },
       { text: '其他', ariaLabel: 'Language Menu', 
         items: [
-          { text: '看书', link: '/read/看书/' },
-          { text: '听歌', link: '/music/听歌/' },
-          { text: '骑车', link: '/bicycle/骑车/' },
-          { text: '跑步', link: '/run/跑步/' },
-          { text: '钢琴', link: '/piano/钢琴/' },
-          { text: '写字', link: '/calligraphy/写字/' },
-          { text: '羽毛球', link: '/badminton/羽毛球/' },
-          { text: '看风景', link: '/scenery/看风景/' },
-          // { text: '看书', link: '/language/chinese/' },
-          // { text: '看书', link: '/language/chinese/' },
-          // { text: '看书', link: '/language/chinese/' },
-          // { text: '看书', link: '/language/chinese/' },
-          // { text: '看书', link: '/language/chinese/' },
-          // { text: '看书', link: '/language/japanese/' }
-        ]
+          { text: 'csharp', link: '/csharp/' },
+          ]
       },
+      // { text: '其他', ariaLabel: 'Language Menu', 
+      //   items: [
+      //     { text: '看书', link: '/read/看书/' },
+      //     { text: '听歌', link: '/music/听歌/' },
+      //     { text: '骑车', link: '/bicycle/骑车/' },
+      //     { text: '跑步', link: '/run/跑步/' },
+      //     { text: '钢琴', link: '/piano/钢琴/' },
+      //     { text: '写字', link: '/calligraphy/写字/' },
+      //     { text: '羽毛球', link: '/badminton/羽毛球/' },
+      //     { text: '看风景', link: '/scenery/看风景/' },
+      //     // { text: '看书', link: '/language/chinese/' },
+      //     // { text: '看书', link: '/language/chinese/' },
+      //     // { text: '看书', link: '/language/chinese/' },
+      //     // { text: '看书', link: '/language/chinese/' },
+      //     // { text: '看书', link: '/language/chinese/' },
+      //     // { text: '看书', link: '/language/japanese/' }
+      //   ]
+      // },
       //{ text: 'csdn', link: 'https://vuepress.vuejs.org/zh/'},
       { text: '关于我', link: 'http://zichenlbl.github.io/about', target: '_self', rel: 'noopener noreferrer' },
     ],

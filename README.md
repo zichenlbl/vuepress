@@ -12,3 +12,8 @@ vuepress官网：https://www.vuepress.cn/ https://vuepress.vuejs.org/
 npm run docs:dev
 ```
 
+## 同步
+
+1.运行Push提交所有文件
+
+2.运行deploy生成静态网页并提交所有静态网页

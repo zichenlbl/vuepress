@@ -144,6 +144,95 @@ private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 }
 ```
 
+### 显示托盘
+
+往窗体上拖一个notifyIcon1组件，然后设置notifyIcon1属性的Icon图标，然后运行窗体，就在托盘显示图标了。
+
+### 在控件上显示提示
+
+往窗体上拖一个toolTip1组件，然后在按钮的鼠标移入事件中写代码：
+
+```csharp
+private void button1_MouseEnter(object sender, EventArgs e)
+{
+    toolTip1.SetToolTip(button1, "我是按钮");
+}
+```
+
+### 设置状态栏进度条
+
+新建TaskbarProgress类。
+
+```csharp
+
+public static class TaskbarProgress
+{
+    public enum TaskbarStates
+    {
+        NoProgress = 0,
+        Indeterminate = 0x1,
+        Normal = 0x2,
+        Error = 0x4,
+        Paused = 0x8
+    }
+
+    [ComImport()]
+    [Guid("ea1afb91-9e28-4b86-90e9-9e9f8a5eefaf")]
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    private interface ITaskbarList3
+    {
+        // ITaskbarList
+        [PreserveSig]
+        void HrInit();
+        [PreserveSig]
+        void AddTab(IntPtr hwnd);
+        [PreserveSig]
+        void DeleteTab(IntPtr hwnd);
+        [PreserveSig]
+        void ActivateTab(IntPtr hwnd);
+        [PreserveSig]
+        void SetActiveAlt(IntPtr hwnd);
+
+        // ITaskbarList2
+        [PreserveSig]
+        void MarkFullscreenWindow(IntPtr hwnd, [MarshalAs(UnmanagedType.Bool)] bool fFullscreen);
+
+        // ITaskbarList3
+        [PreserveSig]
+        void SetProgressValue(IntPtr hwnd, UInt64 ullCompleted, UInt64 ullTotal);
+        [PreserveSig]
+        void SetProgressState(IntPtr hwnd, TaskbarStates state);
+    }
+
+    [ComImport()]
+    [Guid("56fdf344-fd6d-11d0-958a-006097c9a090")]
+    [ClassInterface(ClassInterfaceType.None)]
+    private class TaskbarInstance
+    {
+    }
+
+    private static ITaskbarList3 taskbarInstance = (ITaskbarList3)new TaskbarInstance();
+    private static bool taskbarSupported = Environment.OSVersion.Version >= new Version(6, 1);
+
+    public static void SetState(IntPtr windowHandle, TaskbarStates taskbarState)
+    {
+        if (taskbarSupported) taskbarInstance.SetProgressState(windowHandle, taskbarState);
+    }
+
+    public static void SetValue(IntPtr windowHandle, double progressValue, double progressMax)
+    {
+        if (taskbarSupported) taskbarInstance.SetProgressValue(windowHandle, (ulong)progressValue, (ulong)progressMax);
+    }
+}
+```
+
+使用。
+
+```csharp
+TaskbarProgress.SetValue(this.Handle, 50, 100); // 设置50%进度条
+TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused); // 设置状态为Paused
+```
+
 ### 点击托盘退出按钮关闭程序
 
 ```csharp
@@ -170,6 +259,25 @@ ToolStripMenuItem的Text属性设置为：
 
 ![image-20230720152210462](./image-20230720152210462.png)
 
+### 颜色选择窗体
+
+```csharp
+ColorDialog cd = new ColorDialog();
+cd.ShowDialog();
+```
+
+### 在任务栏中显示气球提示
+
+往窗体上拖一个notifyIcon1组件，然后在代码中写：
+
+```csharp
+public Form1()
+{
+    InitializeComponent();
+    this.notifyIcon1.ShowBalloonTip(1000, "标题", "内容", ToolTipIcon.Info); //显示气泡提示
+}
+```
+
 ## .net framework
 
 ### 文件转base64
@@ -181,7 +289,7 @@ string mBase64String = Convert.ToBase64String(mBytes);
 Console.WriteLine(mBase64String);
 ```
 
-### 读取xml指定节点的值
+### 读取xml指定节点的值（遍历子节点）
 
 XMLFIle2.xml：
 
@@ -330,17 +438,379 @@ XMLFile4.xml
 XmlDocument xmldoc = new XmlDocument();
 xmldoc.Load(@"XMLFile4.xml");
 XmlNamespaceManager xmlns = new XmlNamespaceManager(xmldoc.NameTable);
-xmlns.AddNamespace("sd", "http://example.books.com"); // 默认的命名空间也要添加 前缀
+xmlns.AddNamespace("sd", "http://example.books.com"); // 默认的命名空间也要添加前缀
 xmlns.AddNamespace("sp", "http://example.book.org");
-XmlNodeList nodelist = xmldoc.SelectNodes("/sd:bookstore/sp:book", xmlns);
 XmlNode title = xmldoc.SelectSingleNode("/sd:bookstore/sp:book/sd:title", xmlns);
-// The Confidence Man
-Console.WriteLine(title.InnerText);
+Console.WriteLine(title.InnerText); // The Confidence Man
+Console.WriteLine(xmldoc.SelectSingleNode("/sd:bookstore/sd:book[@genre='philosophy']/sd:title", xmlns).InnerText); // The Gorgias
+```
+
+### 读取xml相同节点不同属性的值
+
+last-name节点相同，type不同。
+
+XMLFile5.xml
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<bookstore xmlns="http://example.books.com">
+  <book genre="autobiography" publicationdate="1991" ISBN="1-861003-11-0">
+    <title>The Autobiography of Benjamin Franklin</title>
+    <author>
+      <first-name>Benjamin</first-name>
+      <last-name type="SAL">Franklin</last-name>
+      <last-name type="SAL2">Franklin2</last-name>
+    </author>
+    <price>8.99</price>
+  </book>
+</bookstore>
+```
+
+代码读取：
+
+```csharp
+XmlDocument xmldoc = new XmlDocument();
+xmldoc.Load(@"XMLFile5.xml");
+XmlNamespaceManager xmlns = new XmlNamespaceManager(xmldoc.NameTable);
+xmlns.AddNamespace("sd", "http://example.books.com");//默认的命名空间也要添加 前缀
+XmlNode title = xmldoc.SelectSingleNode("/sd:bookstore/sd:book/sd:author/sd:last-name[@type='SAL2']", xmlns);
+Console.WriteLine(title.InnerText); // Franklin2
+```
+
+### app.manifest
+
+添加新项，选择应用程序清单文件。
+
+![image-20230814113003956](./image-20230814113003956.png)
+
+
+
+### cpu使用率
+
+1.创建.net framework2.0控制台项目。添加引用，选择程序集，选择System.Management然后点确定。
+
+新建一个SystemInfo.cs类
+
+```csharp
+namespace TestConsoleApp
+{
+    class SystemInfo
+    {
+        /// <summary>
+        /// CPU计数器
+        /// </summary>
+        private System.Diagnostics.PerformanceCounter cpuUsage;   // CPU计数器
+        public float CpuUsage { get { return cpuUsage.NextValue(); }}
+
+        public SystemInfo()
+        {
+            cpuUsage = new System.Diagnostics.PerformanceCounter("Processor", "% Processor Time", "_Total");
+            cpuUsage.MachineName = ".";
+            cpuUsage.NextValue();
+
+            System.Threading.Thread.Sleep(1000);
+        }
+    }
+}
+```
+
+获取cpu使用率：
+
+```csharp
+Console.WriteLine("Hello World!");
+
+var cpu = new SystemInfo().CpuUsage;
+Console.WriteLine("SystemInfo cpu使用率：" + cpu); // SystemInfo cpu使用率：26.88997
+
+Console.ReadKey();
+```
+
+### cpu逻辑处理器数
+
+```csharp
+Console.WriteLine("cpu逻辑处理器数：" + Environment.ProcessorCount); // cpu处理器数：12
+```
+
+### ram大小
+
+```csharp
+var ram = 0L;
+System.Management.ManagementClass managementClass = new System.Management.ManagementClass("Win32_ComputerSystem");
+System.Management.ManagementObjectCollection managements = managementClass.GetInstances();
+foreach (System.Management.ManagementObject management in managements)
+{
+    if (management["TotalPhysicalMemory"] != null)
+    {
+        ram = long.Parse(management["TotalPhysicalMemory"].ToString());
+    }
+}
+Console.WriteLine("内存：" + (ram * 1.00 / 1024 / 1024 / 1024).ToString("F2") + "GB"); // 内存：15.75GB
+```
+
+### ram可用大小
+
+```csharp
+long availableRam = 0L;
+System.Management.ManagementClass mos = new System.Management.ManagementClass("Win32_OperatingSystem");
+foreach (System.Management.ManagementObject mo in mos.GetInstances())
+{
+    if (mo["FreePhysicalMemory"] != null)
+    {
+        availableRam = long.Parse(mo["FreePhysicalMemory"].ToString());
+    }
+}
+Console.WriteLine("可用内存：" + (availableRam * 1.00 / 1024 / 1024).ToString("F2") + "GB"); // 可用内存：2.68GB
+
+```
+
+### ram已用大小
+
+ram大小 - ram可用大小 = ram已用大小
+
+```csharp
+Console.WriteLine("已用内存：" + ((ram * 1.00 / 1024 - availableRam * 1.00) / 1024 / 1024).ToString("F2") + "GB"); // 已用内存：13.07GB
+```
+
+### 硬盘信息
+
+```csharp
+// 获取硬盘信息
+System.IO.DriveInfo[] drive = System.IO.DriveInfo.GetDrives(); // 获取所有驱动器
+for (int i = 0; i < drive.Length; i++) // 遍历驱动器
+{
+    Console.WriteLine(drive[i].Name); // C:\
+    Console.WriteLine(drive[i].DriveFormat); // NTFS
+    Console.WriteLine("总空间：" + (drive[i].TotalSize * 1.00 / 1024 / 1024 / 1024).ToString("F2") + "GB"); // 总空间：300.00GB
+    Console.WriteLine("剩余空间：" + (drive[i].TotalFreeSpace * 1.00 / 1024 / 1024 / 1024).ToString("F2") + "GB"); // 剩余空间：72.50GB
+    Console.WriteLine("已用空间：" + ((drive[i].TotalSize - drive[i].TotalFreeSpace) * 1.00 / 1024 / 1024 / 1024).ToString("F2") + "GB"); // 已用空间：227.50GB
+}
+```
+
+### 本地ip地址
+
+```csharp
+System.Net.IPHostEntry ipEntry = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
+Console.WriteLine("主机名：" + ipEntry.HostName); // 主机名：USER-20221130QZ
+foreach (var ip in ipEntry.AddressList)
+{
+    Console.WriteLine("IP Address: " + ip.ToString()); // IP Address: 192.168.62.125
+}
+```
+
+### 网卡mac地址
+
+```csharp
+foreach (System.Net.NetworkInformation.NetworkInterface nic in System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces())
+{
+    string macAddress;
+    // 网络接口已打开，可以传输数据
+    if (nic.OperationalStatus == System.Net.NetworkInformation.OperationalStatus.Up)
+    {
+        macAddress = nic.GetPhysicalAddress().ToString();
+        if (macAddress.Length > 11)
+            macAddress = macAddress.Insert(2, ":").Insert(5, ":").Insert(8, ":").Insert(11, ":").Insert(14, ":");
+        Console.WriteLine("UP:  " + macAddress); // UP:  B4:45:06:88:2C:62
+    }
+    // 网络接口无法传输数据
+    if (nic.OperationalStatus == System.Net.NetworkInformation.OperationalStatus.Down)
+    {
+        macAddress = nic.GetPhysicalAddress().ToString();
+        if (macAddress.Length > 11)
+            macAddress = macAddress.Insert(2, ":").Insert(5, ":").Insert(8, ":").Insert(11, ":").Insert(14, ":");
+        Console.WriteLine("Down:" + macAddress); // Down:1E:C1:0C:C0:6D:9F
+    }
+}
+```
+
+### 根据生日计算年龄
+
+```csharp
+/// <summary>
+/// 从生日计算年龄
+/// </summary>
+/// <param name="birthday">生日</param>
+/// <param name="ageType">年龄单位</param>
+/// <returns></returns>
+int f_ConvertBirthdayToAge(string birthday,string ageType)
+{
+    try
+    {
+        DateTime date = Convert.ToDateTime(txt_dbirthday.Text);
+        int age = 0;
+        switch (ageType)
+        {
+
+            case "月":
+                {
+                    age = DateTime.Now.Year - date.Year;
+                    if (DateTime.Now.Month < date.Month)
+                    {
+                        age--;
+                        age = age * 12 + date.Month - DateTime.Now.Month;
+                    }
+                    else
+                    {
+                        age = age * 12 + DateTime.Now.Month - date.Month;
+                    }
+                    break;
+                }
+            case "天":
+                {
+                    age = (DateTime.Now - date).Days;
+                    break;
+                }
+            case "小时":
+                {
+                    age = (DateTime.Now - date).Hours;
+                    break;
+                }
+            case "分":
+                {
+                    age = (DateTime.Now - date).Minutes;
+                    break;
+                }
+            case "岁":
+
+            default:
+                {
+                    age = DateTime.Now.Year - date.Year;
+                    if (DateTime.Now.Month < date.Month) age--;
+                    break;
+                }
+
+        }
+        if (age < 0) age = 0;
+        return age;
+    }
+    catch (Exception ex)
+    {
+        logHelper.WriteLine("f_ConvertBirthdayToAge方法中，生日不正确:" + txt_dbirthday.Text + ";ex:" + ex.Message);
+        return 0;
+    }
+}
 ```
 
 
 
+Other
 
+```csharp
+//打开图片
+private void button1_Click(object sender, EventArgs e)
+{
+    openFileDialog1.Filter = "jpg,bmp,gif|*.jpg;*.gif;*.bmp";
+    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+    {
+        pictureBox1.ImageLocation = openFileDialog1.FileName;
+    }
+}
+//打开加密文件
+private void button2_Click(object sender, EventArgs e)
+{
+    openFileDialog1.Filter = "文本文件|*.txt";
+    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+    {
+        textBox1.Text = openFileDialog1.FileName;
+    }
+}
+// 加密
+private void button3_Click(object sender, EventArgs e)
+{
+    try
+    {
+        if (pictureBox1.ImageLocation == null)
+        { MessageBox.Show("请选择一幅图片用于加密"); return; }
+        if (textBox1.Text == "")
+        { MessageBox.Show("请选择加密文件路径"); return; }
+        //图片流
+        FileStream fsPic = new FileStream(pictureBox1.ImageLocation, FileMode.Open, FileAccess.Read);
+        //加密文件流
+        FileStream fsText = new FileStream(textBox1.Text, FileMode.Open, FileAccess.Read);
+        //初始化Key IV
+        byte[] bykey = new byte[16];
+        byte[] byIv = new byte[8];
+        fsPic.Read(bykey, 0, 16);
+        fsPic.Read(byIv, 0, 8);
+        //临时加密文件
+        string strPath = textBox1.Text;//加密文件的路径
+        int intLent = strPath.LastIndexOf("\\") + 1;
+        int intLong = strPath.Length;
+        string strName = strPath.Substring(intLent, intLong - intLent);//要加密的文件名称
+        string strLinPath = "C:\\" + strName;//临时加密文件路径，所以被加密的文件不可以放在C盘的根目录下
+        FileStream fsOut = File.Open(strLinPath, FileMode.Create, FileAccess.Write);
+        //开始加密
+        RC2CryptoServiceProvider desc = new RC2CryptoServiceProvider();//des进行加
+        BinaryReader br = new BinaryReader(fsText);//从要加密的文件中读出文件内容
+        CryptoStream cs = new CryptoStream(fsOut, desc.CreateEncryptor(bykey, byIv), CryptoStreamMode.Write);//写入临时加密文件
+        cs.Write(br.ReadBytes((int)fsText.Length), 0, (int)fsText.Length);//写入加密流
+        cs.FlushFinalBlock();
+        cs.Flush();
+        cs.Close();
+        fsPic.Close();
+        fsText.Close();
+        fsOut.Close();
+        File.Delete(textBox1.Text.TrimEnd());//册除原文件
+        File.Copy(strLinPath, textBox1.Text);//复制加密文件
+        File.Delete(strLinPath);//册除临时文件
+        MessageBox.Show("加密成功");
+        pictureBox1.ImageLocation = null;
+        textBox1.Text = "";
+    }
+    catch (Exception ee)
+    {
+        MessageBox.Show(ee.Message);
+    }
+
+}
+
+//解密
+private void button4_Click(object sender, EventArgs e)
+{
+    try
+    {
+        //图片流
+        FileStream fsPic = new FileStream(pictureBox1.ImageLocation, FileMode.Open, FileAccess.Read);
+        //解密文件流
+        FileStream fsOut = File.Open(textBox1.Text, FileMode.Open, FileAccess.Read);
+        //初始化Key IV
+        byte[] bykey = new byte[16];
+        byte[] byIv = new byte[8];
+        fsPic.Read(bykey, 0, 16);
+        fsPic.Read(byIv, 0, 8);
+        //临时解密文件
+        string strPath = textBox1.Text;//加密文件的路径
+        int intLent = strPath.LastIndexOf("\\") + 1;
+        int intLong = strPath.Length;
+        string strName = strPath.Substring(intLent, intLong - intLent);//要加密的文件名称
+        string strLinPath = "C:\\" + strName;//临时解密文件路径
+        FileStream fs = new FileStream(strLinPath, FileMode.Create, FileAccess.Write);
+        //开始解密
+        RC2CryptoServiceProvider desc = new RC2CryptoServiceProvider();//des进行解
+        CryptoStream csDecrypt = new CryptoStream(fsOut, desc.CreateDecryptor(bykey, byIv), CryptoStreamMode.Read);//读出加密文件
+        BinaryReader sr = new BinaryReader(csDecrypt);//从要加密流中读出文件内容
+        BinaryWriter sw = new BinaryWriter(fs);//写入解密流
+        sw.Write(sr.ReadBytes(Convert.ToInt32(fsOut.Length)));//
+        sw.Flush();
+        sw.Close();
+        sr.Close();
+        fs.Close();
+        fsOut.Close();
+        fsPic.Close();
+        csDecrypt.Flush();
+
+        File.Delete(textBox1.Text.TrimEnd());//册除原文件
+        File.Copy(strLinPath, textBox1.Text);//复制加密文件
+        File.Delete(strLinPath);//册除临时文件
+        MessageBox.Show("解密成功");
+        pictureBox1.ImageLocation = null;
+        textBox1.Text = "";
+    }
+    catch (Exception ee)
+    {
+        MessageBox.Show(ee.Message);
+    }
+}
+```
 
 
 
