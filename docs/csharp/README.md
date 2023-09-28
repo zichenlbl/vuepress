@@ -332,7 +332,7 @@ foreach (System.Xml.XmlNode node in root.ChildNodes)
         {
             if (a[i].Name == "scode")
             {
-                Console.WriteLine(a[i].InnerText);
+                Console.WriteLine(a[i].InnerText); // 状态编码（01/02/03……）
                 /*
                 // scode节点下还有子节点的话，通过这样获取
                 for (int j = 0; j < a[i].ChildNodes.Count; j++)
@@ -391,8 +391,7 @@ XmlNodeList xnList = doc.DocumentElement.GetElementsByTagName("id");
 XmlNode xmlNode = doc.SelectSingleNode("root/receiver/device/id/item[@root='2.16.156.10011.2.5.1.4']");
 if (xmlNode != null)
 {
-    // ECG1
-    Console.WriteLine(xmlNode.Attributes["extension"].Value);
+    Console.WriteLine(xmlNode.Attributes["extension"].Value); // ECG1
 }
 //通过这个集合下标的Attributes获取对应属性的值
 // b7722265-cc05-4b72-b3ed-fe54b30a34c4
@@ -475,6 +474,72 @@ XmlNamespaceManager xmlns = new XmlNamespaceManager(xmldoc.NameTable);
 xmlns.AddNamespace("sd", "http://example.books.com");//默认的命名空间也要添加 前缀
 XmlNode title = xmldoc.SelectSingleNode("/sd:bookstore/sd:book/sd:author/sd:last-name[@type='SAL2']", xmlns);
 Console.WriteLine(title.InnerText); // Franklin2
+```
+
+### 读取xml相同节点相同属性的值
+
+20230928.xml文件：
+
+获取CT检查单这个值。<methodCode></methodCode>节点数量1~n个。
+
+```xml
+<QUMT_IN020040UV01 ITSVersion="XML_1.0" xsi:schemaLocation=" urn:hl7-org:v3 ../multicacheschemas/QUMT_IN020040UV01YZ.xsd" xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <methodCode>
+    <item code="" codeSystem="2.16.156.10011.2.3.2.47" codeSystemName="检查方式代码表">
+      <displayName value="" />
+    </item>
+    <item code="00046">
+      <displayName value="CT检查单" />
+    </item>
+  </methodCode>
+  <methodCode>
+    <item code="" codeSystem="2.16.156.10011.2.3.2.47" codeSystemName="检查方式代码表">
+      <displayName value="" />
+    </item>
+    <item code="00046">
+      <displayName value="DX检查单" />
+    </item>
+  </methodCode>
+  <methodCode>
+    <item code="" codeSystem="2.16.156.10011.2.3.2.47" codeSystemName="检查方式代码表">
+      <displayName value="" />
+    </item>
+    <item code="00046">
+      <displayName value="MR检查单" />
+    </item>
+  </methodCode> 
+  <!--<methodCode>...</methodCode>-->
+</QUMT_IN020040UV01>
+```
+
+代码读取：
+
+```csharp
+System.Xml.XmlDocument xmlDocument = new System.Xml.XmlDocument();
+xmlDocument.Load(@"C:\Users\Administrator\Desktop\20230928.xml");
+System.Xml.XmlNamespaceManager xmlNamespaceManager = new System.Xml.XmlNamespaceManager(xmlDocument.NameTable);
+xmlNamespaceManager.AddNamespace("ns", "urn:hl7-org:v3");
+
+XmlNode methodCode = xmlDocument.SelectSingleNode("//ns:QUMT_IN020040UV01//ns:methodCode", xmlNamespaceManager);
+string displayName = methodCode.ChildNodes[1].SelectSingleNode("ns:displayName", xmlNamespaceManager).Attributes["value"].Value.ToString();
+Console.WriteLine(displayName); // CT检查单
+
+// 获取所有的displayName的值
+XmlNode xmlNode = xmlDocument.SelectSingleNode("//ns:QUMT_IN020040UV01", xmlNamespaceManager);
+foreach (XmlNode childNode in xmlNode.ChildNodes)
+{
+    switch (childNode.Name)
+    {
+        case "methodCode":
+            displayName = childNode.ChildNodes[1].ChildNodes[0].Attributes["value"].Value.ToString();
+            displayName = childNode.ChildNodes[1].SelectSingleNode("ns:displayName", xmlNamespaceManager).Attributes["value"].Value.ToString();
+            Console.WriteLine(displayName); // CT检查单  DX检查单  MR检查单
+            break;
+
+        default:
+            break;
+    }
+}
 ```
 
 ### app.manifest
@@ -690,9 +755,80 @@ int f_ConvertBirthdayToAge(string birthday,string ageType)
 }
 ```
 
+### 把字符串转为日期类型
+
+把字符串20230928转换成DateTime类型，然后输出指定的日期格式。
+
+```csharp
+string birthday = DateTime.ParseExact("20230928", "yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture).ToString("yyyy-MM-dd HH:mm:ss");
+Console.WriteLine(birthday); // 2023-09-28 00:00:00
+```
+
+### DataTable添加一行数据
+
+```csharp
+DataTable dataTable = new DataTable();
+dataTable.TableName = "userinfo";
+
+System.Data.DataColumn id = new DataColumn();
+id.ColumnName = "id";
+id.DataType = System.Type.GetType("System.Int64");
+id.AllowDBNull = true; // 不允许为DBNull值(不存在的值)
+id.Unique = true; // 值约束为唯一
+id.AutoIncrement = true; // 添加新行时自动递增
+id.AutoIncrementSeed = 1; // 从1开始递增，第一行的id为1
+id.AutoIncrementStep = 1; // 递增步长为1
+dataTable.Columns.Add(id);
+dataTable.PrimaryKey = new DataColumn[] { dataTable.Columns["id"] };
+
+System.Data.DataColumn check = new DataColumn();
+check.DefaultValue = "false";
+check.ColumnName = "check";
+check.DataType = System.Type.GetType("System.Boolean");
+dataTable.Columns.Add(check);
+
+System.Data.DataColumn name = new DataColumn();
+name.DefaultValue = "";
+name.ColumnName = "name";
+name.DataType = System.Type.GetType("System.String");
+name.AllowDBNull = true; // 不允许为DBNull值(不存在的值)
+name.Unique = true; // 值约束为唯一
+
+dataTable.Columns.Add(name);
+
+System.Data.DataColumn age = new DataColumn();
+age.DefaultValue = 0;
+age.ColumnName = "age";
+age.DataType = System.Type.GetType("System.Int32");
+dataTable.Columns.Add(age);
+
+System.Data.DataColumn day = new DataColumn();
+day.DefaultValue = 0;
+day.ColumnName = "day";
+day.DataType = typeof(int);
+// 表达式：“总计 >= 500”；"UnitPrice * Quantity"；Sum(Price)
+day.Expression = "365 * age"; // 设置表达式计算该列的值
+dataTable.Columns.Add(day);
+
+DataRow dataRow = dataTable.NewRow();
+dataRow["name"] = "张三";
+dataRow["age"] = 100;
+dataTable.Rows.Add(dataRow);
+
+dataRow = dataTable.NewRow();
+dataRow["name"] = "李四";
+dataRow["age"] = 99;
+dataTable.Rows.Add(dataRow);
+
+DataRow dataRow1 = dataTable.Rows[0]; // DataRow：表中包含的实际数据
+
+DataSet dataSet = new DataSet();
+dataSet.Tables.Add(dataTable);
+```
 
 
-Other
+
+### Other
 
 ```csharp
 //打开图片
