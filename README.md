@@ -67,7 +67,7 @@ C:\Users\Administrator\Desktop\临时文件\zicl\vuepress\vuepress>git branch -a
 C:\Users\Administrator\Desktop\临时文件\zicl\vuepress\vuepress>
 ```
 
-## 错误解决
+## 运行错误解决
 
 出现错误：
 
@@ -76,6 +76,22 @@ C:\Users\Administrator\Desktop\临时文件\zicl\vuepress\vuepress>
 原因： nodeJs V17 版本发布了 OpenSSL3.0 对算法和秘钥大小增加了更为严格的限制，nodeJs v17 之前版本没影响，但 V17 和之后版本会出现这个错误。 
 
 解决：cmd 运行 set NODE_OPTIONS=--openssl-legacy-provider ，然后正常运行项目。
+
+## 部署错误解决
+
+![image-20240308231022308](README/image-20240308231022308.png)
+
+在 package.json 文件中更改 scripts，docs:build 时先设置 NODE_OPTIONS 环境变量，并启用 OpenSSL 1.0.x 的兼容模式，从而避免 opensslErrorStack 错误的出现。 
+
+```json
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs",
+	"docs:build": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress build docs"
+},
+```
+
+
 
 ## 安装插件
 
