@@ -67,3 +67,25 @@ C:\Users\Administrator\Desktop\临时文件\zicl\vuepress\vuepress>git branch -a
 C:\Users\Administrator\Desktop\临时文件\zicl\vuepress\vuepress>
 ```
 
+## 错误解决
+
+出现错误：
+
+![image-20240308231022308](README/image-20240308231022308.png)
+
+原因： nodeJs V17 版本发布了 OpenSSL3.0 对算法和秘钥大小增加了更为严格的限制，nodeJs v17 之前版本没影响，但 V17 和之后版本会出现这个错误。 
+
+解决：cmd 运行 set NODE_OPTIONS=--openssl-legacy-provider ，然后正常运行项目。
+
+## 安装插件
+
+回到顶部插件：https://vuepress.vuejs.org/zh/plugin/official/plugin-back-to-top.html
+
+1. 安装
+
+   `cnpm install -D @vuepress/plugin-back-to-top`
+
+2. 配置文件使用插件
+
+   `plugins: ['@vuepress/back-to-top']`
+

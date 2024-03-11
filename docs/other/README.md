@@ -12,7 +12,9 @@
 
 ### ip地址
 
-查看公网ip地址：[https://api-v3.speedtest.cn/ip](https://api-v3.speedtest.cn/ip)
+查看公网ip地址，ip所在城市：[https://api-v3.speedtest.cn/ip](https://api-v3.speedtest.cn/ip)
+
+查看详细公网ip地址：[https://tisu-api-v3.speedtest.cn/speedUp/query](https://tisu-api-v3.speedtest.cn/speedUp/query)
 
 ### 二维码
 

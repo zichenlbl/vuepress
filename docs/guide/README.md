@@ -40,11 +40,11 @@
 
 ## 软件安装
 
-[php](/php/README.md)
+[Apache](/software-installation/apache/)
 
-[apache](/apache/README.md)
+[MySQL](/software-installation/mysql/)
 
-[mysql](/mysql/README.md)
+[PHP](/software-installation/php/)
 
 ## 电脑操作
 
@@ -55,3 +55,6 @@
 <img :src="$withBase('/he.png')" alt="图片">
 
 -->
+
+## 语言
+

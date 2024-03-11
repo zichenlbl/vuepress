@@ -1,58 +1,66 @@
 module.exports = {
   base: '/vuepress/',
-  title: '文档',
-  description: 'HuJinya',
+  title: 'Zichen',
+  description: 'Zichen',
   head: [
-    ['link', { rel: 'icon', href: '/assets/img/logo.png' }]
+    ['link', { rel: 'icon', href: '/assets/img/favicon.png' }]
   ],
   themeConfig: {
-    logo: '/assets/img/logo.png',
+    logo: '/hero.png',
     //标题导航栏
     nav: [
       { text: '首页', link: '/' },
       { text: '目录', link: '/guide/', target: '_self', rel: '' },
-      // { text: '分类',
-      //   items: [
-      //     { text: 'C#', items: [ 
-      //          { text: '基础', link: '/' }, { text: 'csharp', link: '/csharp/' } 
-      //       ] 
-      //     },
-      //     { text: '计算机', items: [
-      //          { text: '空', link: '/language/chinese/' }, { text: '空', link: '/language/japanese/' } 
-      //       ] 
-      //     }
-      //   ]
-      // },
+      { text: '分类',
+        items: [
+          { text: '软件安装', items: [
+               { text: 'Apache', link: '/software-installation/apache/' } 
+               ,{ text: 'MySQL', link: '/software-installation/mysql/' } 
+               ,{ text: 'PHP', link: '/software-installation/php/' } 
+            ]
+          },
+          { text: '语言', items: [
+               { text: 'C', link: '/language/chinese/' } 
+               ,{ text: 'C#', link: '/language/japanese/' }
+               ,{ text: 'C++', link: '/language/japanese/' }
+               ,{ text: 'CSS', link: '/language/japanese/' }
+               ,{ text: 'HTML', link: '/language/japanese/' }
+               ,{ text: 'Java', link: '/language/japanese/' }
+               ,{ text: 'JavaScript', link: '/language/japanese/' }
+               ,{ text: 'PHP', link: '/language/japanese/' }
+               ,{ text: 'Python', link: '/language/japanese/' }
+               ,{ text: 'Visual Basic', link: '/language/japanese/' }
+            ] 
+          }
+        ]
+      },
       { text: '其他', ariaLabel: 'Language Menu', 
         items: [
           { text: 'csharp', link: '/csharp/' },
-          ]
+          { text: '看书', link: '/read/看书/' },
+          { text: '听歌', link: '/music/听歌/' },
+          { text: '骑车', link: '/bicycle/骑车/' },
+          { text: '跑步', link: '/run/跑步/' },
+          { text: '钢琴', link: '/piano/钢琴/' },
+          { text: '写字', link: '/calligraphy/写字/' },
+          { text: '羽毛球', link: '/badminton/羽毛球/' },
+          { text: '看风景', link: '/scenery/看风景/' }
+        ]
       },
-      // { text: '其他', ariaLabel: 'Language Menu', 
-      //   items: [
-      //     { text: '看书', link: '/read/看书/' },
-      //     { text: '听歌', link: '/music/听歌/' },
-      //     { text: '骑车', link: '/bicycle/骑车/' },
-      //     { text: '跑步', link: '/run/跑步/' },
-      //     { text: '钢琴', link: '/piano/钢琴/' },
-      //     { text: '写字', link: '/calligraphy/写字/' },
-      //     { text: '羽毛球', link: '/badminton/羽毛球/' },
-      //     { text: '看风景', link: '/scenery/看风景/' },
-      //     // { text: '看书', link: '/language/chinese/' },
-      //     // { text: '看书', link: '/language/chinese/' },
-      //     // { text: '看书', link: '/language/chinese/' },
-      //     // { text: '看书', link: '/language/chinese/' },
-      //     // { text: '看书', link: '/language/chinese/' },
-      //     // { text: '看书', link: '/language/japanese/' }
-      //   ]
-      // },
-      //{ text: 'csdn', link: 'https://vuepress.vuejs.org/zh/'},
-      { text: '关于我', link: 'http://zichenlbl.github.io/about', target: '_self', rel: 'noopener noreferrer' },
+      { text: '关于我', link: 'http://zichenlbl.github.io/about', target: '_black', rel: 'noopener noreferrer' },
     ],
     navbar: true,
-    // sidebar: [
-    //   '/',
-    //   ['/guide/', 'Explicit link text'],
+    // sidebar: [  
+    //   {  
+    //     title: '介绍', // 必要的  
+    //     path: '/', // 可选的, 链接到该侧边栏项对应的页面  
+    //     collapsable: false, // 可选的, 默认值是 true  
+    //     children: [  
+    //       '/intro/getting-started.md',  
+    //       '/intro/installation.md'  
+    //     ]  
+    //   },  
+    //   // 其他侧边栏项...  
     // ],
     //侧边栏
     sidebar: 'auto',
@@ -96,9 +104,9 @@ module.exports = {
     // 上一篇，下一篇
     themeConfig: {
       // 默认值是 true 。设置为 false 来禁用所有页面的 下一篇 链接
-      nextLinks: false,
+      //nextLinks: false,
       // 默认值是 true 。设置为 false 来禁用所有页面的 上一篇 链接
-      prevLinks: false
+      //prevLinks: false
     },
     
 
@@ -109,31 +117,27 @@ module.exports = {
     lineNumbers: true
   },
 
-  
-  plugins: {
-    //回到顶部back-to-top
-    '@vuepress/back-to-top': {},
-
-    //中等变焦plugin-medium-zoom
-    '@vuepress/medium-zoom': {
-      //selector: 'img.zoom-custom-imgs',
-      selector: 'main :not(a) > img',
+  plugins: [
+    '@vuepress/back-to-top'
+    ,['@vuepress/search', {
+      searchMaxSuggestions: 10
+    }],
+    // ['@vuepress/medium-zoom']
+    // ['@vuepress/medium-zoom'
+      // , {
+      // selector: 'img.zoom-custom-imgs',
+      // selector: 'main :not(a) > img',
       // medium-zoom options here
       // See: https://github.com/francoischalifour/medium-zoom#options
-      options: {
-        margin: 15, // 缩放图像外部的空间
-        background: '#302930', // 叠加层的背景
-        scrollOffset: 0, // 关闭缩放时滚动的像素数
-        container: '#zoom-container', // 用于渲染缩放的视口
-        template: '#zoom-template', // 要在缩放上显示的模板元素
-      }
-    },
-
-    //搜索search
-    '@vuepress/search': {
-      searchMaxSuggestions: 10
-    },
-
-  }
+      // options: {
+      //   margin: 15, // 缩放图像外部的空间
+      //   background: '#302930', // 叠加层的背景
+      //   scrollOffset: 0, // 关闭缩放时滚动的像素数
+      //   container: '#zoom-container', // 用于渲染缩放的视口
+      //   template: '#zoom-template', // 要在缩放上显示的模板元素
+      // }
+    // }
+    // ]
+  ]
   
 }
