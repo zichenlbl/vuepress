@@ -124,7 +124,7 @@
 
 ![image-20230809144709502](./image-20230809144709502.png)
 
-### 1.7 ApacheMonitor
+### 1.6 ApacheMonitor
 
 打开 ApacheMonitor.exe，运行后不会显示界面，需要在托盘中打开界面。
 
