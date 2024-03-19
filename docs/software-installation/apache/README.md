@@ -4,6 +4,14 @@
 
 ### 1.1 下载 Apache 压缩包
 
+::: tip 参考视频
+
+[https://www.bilibili.com/video/BV1S4411e7jq?p=6](https://www.bilibili.com/video/BV1S4411e7jq?p=6)
+[https://www.bilibili.com/video/BV18x411H7qD?p=6](https://www.bilibili.com/video/BV18x411H7qD?p=6)
+[https://www.bilibili.com/video/BV1Zx4y1T7Hy?p=26](https://www.bilibili.com/video/BV1Zx4y1T7Hy?p=26)
+
+:::
+
 进入 Apache 官网：[https://apache.org/](https://apache.org/)
 
 点击 Downloads 下面的 Distributions 跳转到下载界面。 
