@@ -1,6 +1,6 @@
 # 安装 PHP
 
-## 1. Windows 安装 PHP
+## Windows 安装 PHP
 
 ### 1.1 下载 PHP 压缩包
 
@@ -74,7 +74,7 @@ PHP 目录结构说明。
 
 至此，就成功安装了 PHP。
 
-## 2. PHP 加载 MySQL 模块
+## PHP 加载 MySQL 模块
 
 ### 2.1 修改 PHP 配置文件
 

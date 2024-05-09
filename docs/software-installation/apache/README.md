@@ -1,6 +1,6 @@
 # 安装 Apache
 
-## 1. Windows 安装 Apache
+## Windows 安装 Apache
 
 ### 1.1 下载 Apache 压缩包
 
@@ -180,7 +180,7 @@ httpd.exe -k restart -n 服务名
 
 ![image-20230809151550323](./image-20230809151550323.png)
 
-## 2. Apache 加载 PHP 模块
+## Apache 加载 PHP 模块
 
 ### 2.1 创建 PHP 配置文件
 
