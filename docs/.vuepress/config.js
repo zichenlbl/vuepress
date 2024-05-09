@@ -1,6 +1,6 @@
 module.exports = {
   base: '/vuepress/',
-  title: 'Zichen',
+  title: 'Zichen文档',
   description: 'Zichen',
   head: [
     ['link', { rel: 'icon', href: '/assets/img/favicon.png' }]
@@ -14,7 +14,8 @@ module.exports = {
       { text: '分类',
         items: [
           { text: '软件安装', items: [
-               { text: 'Apache', link: '/software-installation/apache/' } 
+               { text: 'Apache', link: '/software-installation/apache/' }
+               ,{ text: 'Git', link: '/software-installation/git/' } 
                ,{ text: 'MySQL', link: '/software-installation/mysql/' } 
                ,{ text: 'PHP', link: '/software-installation/php/' } 
             ]
