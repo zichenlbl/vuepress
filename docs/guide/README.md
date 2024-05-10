@@ -2,13 +2,13 @@
 
 ## c#
 
-[图片转base64](/csharp/图片转base64.md),   [查看编辑器版本](/csharp/查看编辑器版本.md),   [对象json字符串序列化](/csharp/对象json字符串序列化.md),   [获取剪切板的图片](/csharp/获取剪切板的图片.md), 
+[图片转base64](/other/csharp/图片转base64.md),   [查看编辑器版本](/other/csharp/查看编辑器版本.md),   [对象json字符串序列化](/other/csharp/对象json字符串序列化.md),   [获取剪切板的图片](/other/csharp/获取剪切板的图片.md), 
 
-[图片转base64](/csharp/图片转base64.md),   [用户按下的键](/csharp/用户按下的键.md),   [注释格式](/csharp/注释格式.md),   [cefsharp暴露给js调用方法](/csharp/cefsharp暴露给js调用方法.md), 
+[图片转base64](/other/csharp/图片转base64.md),   [用户按下的键](/other/csharp/用户按下的键.md),   [注释格式](/other/csharp/注释格式.md),   [cefsharp暴露给js调用方法](/other/csharp/cefsharp暴露给js调用方法.md), 
 
-[cefsharp下载文件](/csharp/cefsharp下载文件.md),   [exe发送消息](/csharp/exe发送消息.md),   [GridControl列表绑定数据](/csharp/GridControl列表绑定数据.md),   [TreeList树形列表绑定数据](/csharp/TreeList树形列表绑定数据.md), 
+[cefsharp下载文件](/other/csharp/cefsharp下载文件.md),   [exe发送消息](/other/csharp/exe发送消息.md),   [GridControl列表绑定数据](/other/csharp/GridControl列表绑定数据.md),   [TreeList树形列表绑定数据](/other/csharp/TreeList树形列表绑定数据.md), 
 
-[日志信息获取代码第几行](/csharp/日志信息获取代码第几行.md), 
+[日志信息获取代码第几行](/other/csharp/日志信息获取代码第几行.md), 
 
 ---
 
