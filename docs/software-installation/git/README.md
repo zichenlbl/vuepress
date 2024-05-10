@@ -97,10 +97,10 @@ git  git-2.45.0  git-2.45.0.tar.gz
 如果编译失败，需要安装以下包。
 
 ```shell
-[root@zichen35 git-2.45.0]# 
+[root@zichen35 git-2.45.0]# yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker
 ```
 
-安装 yum 包的过程会自动安装 git 到 `/usr/libexec/git-core/` 目录，所以要卸载默认安装的 git。
+安装 yum 包的过程中会自动安装 git 到 `/usr/libexec/git-core/` 目录，所以要卸载默认安装的 git，然后重新编译安装。
 
 ```shell
 [root@zichen35 git-2.45.0]# yum remove git

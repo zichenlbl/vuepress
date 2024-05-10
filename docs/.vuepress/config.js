@@ -21,31 +21,31 @@ module.exports = {
             ]
           },
           { text: '语言', items: [
-               { text: 'C', link: '/language/chinese/' } 
-               ,{ text: 'C#', link: '/language/japanese/' }
-               ,{ text: 'C++', link: '/language/japanese/' }
-               ,{ text: 'CSS', link: '/language/japanese/' }
-               ,{ text: 'HTML', link: '/language/japanese/' }
-               ,{ text: 'Java', link: '/language/japanese/' }
-               ,{ text: 'JavaScript', link: '/language/japanese/' }
-               ,{ text: 'PHP', link: '/language/japanese/' }
-               ,{ text: 'Python', link: '/language/japanese/' }
-               ,{ text: 'Visual Basic', link: '/language/japanese/' }
+               { text: 'C', link: '/language/c/' } 
+               ,{ text: 'C#', link: '/language/csharp/' }
+               ,{ text: 'C++', link: '/language/c++/' }
+               ,{ text: 'CSS', link: '/language/css/' }
+               ,{ text: 'HTML', link: '/language/html/' }
+               ,{ text: 'Java', link: '/language/java/' }
+               ,{ text: 'JavaScript', link: '/language/js/' }
+               ,{ text: 'PHP', link: '/language/php/' }
+               ,{ text: 'Python', link: '/language/python/' }
+               ,{ text: 'Visual Basic', link: '/language/vb/' }
             ] 
           }
         ]
       },
       { text: '其他', ariaLabel: 'Language Menu', 
         items: [
-          { text: 'csharp', link: '/csharp/' },
-          { text: '看书', link: '/read/看书/' },
-          { text: '听歌', link: '/music/听歌/' },
-          { text: '骑车', link: '/bicycle/骑车/' },
-          { text: '跑步', link: '/run/跑步/' },
-          { text: '钢琴', link: '/piano/钢琴/' },
-          { text: '写字', link: '/calligraphy/写字/' },
-          { text: '羽毛球', link: '/badminton/羽毛球/' },
-          { text: '看风景', link: '/scenery/看风景/' }
+          { text: 'csharp', link: '/other/csharp/' },
+          { text: '看书', link: '/other/read/看书/' },
+          { text: '听歌', link: '/other/music/听歌/' },
+          { text: '骑车', link: '/other/bicycle/骑车/' },
+          { text: '跑步', link: '/other/run/跑步/' },
+          { text: '钢琴', link: '/other/piano/钢琴/' },
+          { text: '写字', link: '/other/calligraphy/写字/' },
+          { text: '羽毛球', link: '/other/badminton/羽毛球/' },
+          { text: '看风景', link: '/other/scenery/看风景/' }
         ]
       },
       { text: '关于我', link: 'http://zichenlbl.github.io/about', target: '_black', rel: 'noopener noreferrer' },

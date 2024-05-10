@@ -18,17 +18,29 @@
 
 ## 软件安装
 
-[Apache](/software-installation/apache/)  ，  [Git](/software-installation/git/)  ，  [MySQL](/software-installation/mysql/)  ，  [PHP](/software-installation/php/)  ，  
+[Apache](/software-installation/apache/)  ，  [Git](/software-installation/git/)  ，  [MySQL](/software-installation/mysql/)  ，  [PHP](/software-installation/php/)  ，  [VMware](/software-installation/vmware/)  ，  
 
 ## 电脑操作
 
-[网页微信传输助手](/other/README.md#微信文件传输助手)
+[网页微信传输助手](/computer-tutorial/other/README.md#微信文件传输助手)  ，  [使用 VMware 安装虚拟机](/computer-tutorial/install-virtual-machine/)  ，  
 
-<!--
+---
 
-<img :src="$withBase('/he.png')" alt="图片">
+Email：zicl@qq.com
 
--->
+Copyright 2023-2024 Zichen
+
+Licensed under the Apache License, Version 2.0 (the “License”);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+<a target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
 
 

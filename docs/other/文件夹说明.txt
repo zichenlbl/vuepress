@@ -1,0 +1,11 @@
+顶部标题导航栏：其他
+
+          { text: 'csharp', link: '/other/csharp/' },
+          { text: '看书', link: '/other/read/看书/' },
+          { text: '听歌', link: '/other/music/听歌/' },
+          { text: '骑车', link: '/other/bicycle/骑车/' },
+          { text: '跑步', link: '/other/run/跑步/' },
+          { text: '钢琴', link: '/other/piano/钢琴/' },
+          { text: '写字', link: '/other/calligraphy/写字/' },
+          { text: '羽毛球', link: '/other/badminton/羽毛球/' },
+          { text: '看风景', link: '/other/scenery/看风景/' }

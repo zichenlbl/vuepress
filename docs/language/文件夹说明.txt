@@ -1,0 +1,12 @@
+顶部标题导航栏：分类-语言
+
+               { text: 'C', link: '/language/c/' } 
+               ,{ text: 'C#', link: '/language/csharp/' }
+               ,{ text: 'C++', link: '/language/c++/' }
+               ,{ text: 'CSS', link: '/language/css/' }
+               ,{ text: 'HTML', link: '/language/html/' }
+               ,{ text: 'Java', link: '/language/java/' }
+               ,{ text: 'JavaScript', link: '/language/js/' }
+               ,{ text: 'PHP', link: '/language/php/' }
+               ,{ text: 'Python', link: '/language/python/' }
+               ,{ text: 'Visual Basic', link: '/language/vb/' }
