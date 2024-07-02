@@ -1,5 +1,6 @@
 module.exports = {
-  base: '/vuepress/',
+  base: '/', // doc.hujinya.com 用这个
+  // base: '/vuepress/', // hujinya.com/vuepress 用这个
   title: 'Zichen文档',
   description: 'Zichen',
   head: [
